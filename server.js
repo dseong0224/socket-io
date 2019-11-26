@@ -15,6 +15,9 @@ app.get('/', (req, res) => {
 })
 
 app.post('./room', (req,res) => {
+  if(rooms[req.bpdy.room]){
+    return res.redirect('/')
+  }
   rooms[req.bpdy.room] = { users: {} }
   res.redirect(res.body.room)
 })
