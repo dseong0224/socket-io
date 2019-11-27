@@ -8,17 +8,17 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended : true }))
 
-const rooms = { name: {}}
+const rooms = { }
 
 app.get('/', (req, res) => {
   res.render('index', { rooms: rooms })
 })
 
 app.post('./room', (req,res) => {
-  if(rooms[req.bpdy.room]){
+  if(rooms[req.body.room]){
     return res.redirect('/')
   }
-  rooms[req.bpdy.room] = { users: {} }
+  rooms[req.body.room] = { users: {} }
   res.redirect(res.body.room)
 })
 
